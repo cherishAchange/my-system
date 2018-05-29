@@ -12,13 +12,13 @@ const clientConfig = {
     filename: 'bundle.[hash:4].js',
     path: path.resolve('dist')
   },
-  devtool: 'source-map', // 打包source-map文件
+  // devtool: 'source-map', // 打包source-map文件
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
   module: {
     rules: [
-      { 
+      {
         test: /\.tsx?$/,
         use: ['awesome-typescript-loader', {
           loader: 'input_origin',
@@ -31,8 +31,20 @@ const clientConfig = {
       {
         test: /\.scss?$/,
         use: ExtractTextWebpackPlugin.extract({
-          use: 'css-loader'
+          use: ['css-loader', 'sass-loader']
         })
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              outputPath: 'images/'
+            }
+          }
+        ]
       },
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
     ]
@@ -64,7 +76,14 @@ const clientConfig = {
     new CleanWebpackPlugin('dist'),
     new ConsoleLogOnBuildWebpackPlugin({ name: 'JET' }),
     new ExtractTextWebpackPlugin('css/style.css'),
-  ]
+  ],
+  devServer: {
+    contentBase: './dist',
+    host: 'localhost',
+    port: 6699,
+    open: true,
+    hot: true
+  }
 }
 
 const serverConfig = {
@@ -75,6 +94,15 @@ const serverConfig = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'server.js'
   },
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      }
+    ]
+  }
 }
 
-module.exports = [clientConfig, serverConfig];
+module.exports = [clientConfig];
