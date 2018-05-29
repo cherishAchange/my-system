@@ -13,11 +13,11 @@ let day_res_S_count = 0;
 let day_res_R_count = 0;
 
 log4js.configure({
-  appenders: { cheese: { type: 'file', filename: 'cheese.log' } },
+  appenders: { cheese: { type: 'file', filename: './log_dir/server/server.log' } },
   categories: { default: { appenders: ['cheese'], level: 'trace' } }
 });
 
-const logger = log4js.getLogger('cheese');
+const logger = log4js.getLogger('server');
 
 logger.trace('Entering cheese testing');
 logger.debug('Got cheese.');

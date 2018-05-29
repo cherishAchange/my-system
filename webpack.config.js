@@ -7,12 +7,13 @@ const path = require('path');
 
 const clientConfig = {
   mode: 'development',
+  target: 'web',
   entry: './clientWeb/src/index.tsx',
   output: {
     filename: 'bundle.[hash:4].js',
     path: path.resolve('dist')
   },
-  // devtool: 'source-map', // 打包source-map文件
+  devtool: 'source-map', // 打包source-map文件
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
@@ -24,7 +25,7 @@ const clientConfig = {
           loader: 'input_origin',
           options: { //给loader的配置写在这里，在loader内可以获取到
             comments: false,
-            name: '太博文'
+            name: 'JET'
           }
         }],//从右往左调用，左边的输入是右边的输出
       },

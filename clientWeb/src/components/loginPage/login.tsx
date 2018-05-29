@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { configure, getLogger } from 'log4js';
 import './login.scss';
 
 class Login_Page extends React.Component {
