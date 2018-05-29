@@ -1,0 +1,1 @@
+export interface Init { props: object; state: object };

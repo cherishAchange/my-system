@@ -20,14 +20,18 @@ const clientConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: ['awesome-typescript-loader', {
-          loader: 'input_origin',
-          options: { //给loader的配置写在这里，在loader内可以获取到
-            comments: false,
-            name: 'JET'
+        test: /\.(tsx|ts)?$/,
+        use: [
+          // 'babel-loader',
+          'awesome-typescript-loader',
+          {
+            loader: 'input_origin',
+            options: { //给loader的配置写在这里，在loader内可以获取到
+              comments: false,
+              name: 'JET'
+            }
           }
-        }],//从右往左调用，左边的输入是右边的输出
+        ],//从右往左调用，左边的输入是右边的输出
       },
       {
         test: /\.scss?$/,
@@ -78,13 +82,13 @@ const clientConfig = {
     new ConsoleLogOnBuildWebpackPlugin({ name: 'JET' }),
     new ExtractTextWebpackPlugin('css/style.css'),
   ],
-  devServer: {
-    contentBase: './dist',
-    host: 'localhost',
-    port: 6699,
-    open: true,
-    hot: true
-  }
+  // devServer: {
+  //   contentBase: './dist',
+  //   host: 'localhost',
+  //   port: 6699,
+  //   open: true,
+  //   hot: true
+  // }
 }
 
 const serverConfig = {
