@@ -4,6 +4,8 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const ConsoleLogOnBuildWebpackPlugin = require('./custom-plugins/consoleLog');
 const path = require('path');
+const process = require('process');
+console.log('NODE_ENV是：', process.env.NODE_ENV);
 
 const clientConfig = {
   mode: 'development',
