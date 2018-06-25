@@ -8,7 +8,7 @@
 		"jsx": "react"
 	},
 	"include": [
-		"./clientWeb/src/*"
+		"/clientWeb/*"
 	],
 	"exclude": [
 		"node_modules"

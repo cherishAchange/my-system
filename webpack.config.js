@@ -10,10 +10,12 @@ const clientConfig = {
   target: 'web',
   entry: './clientWeb/src/index.tsx',
   output: {
-    filename: 'bundle.[hash:4].js',
-    path: path.resolve('dist')
+    filename: '[name].bundle.[hash:4].js',
+    chunkFilename: 'chunks/[name].bundle.[chunkhash:8].js',
+    path: path.resolve('dist'),
+    publicPath: './',
   },
-  devtool: 'source-map', // 打包source-map文件
+  //devtool: 'source-map', // 打包source-map文件
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
@@ -36,7 +38,7 @@ const clientConfig = {
       {
         test: /\.scss?$/,
         use: ExtractTextWebpackPlugin.extract({
-          use: ['css-loader', 'sass-loader']
+          use: ['css-loader', 'sass-loader', 'input_origin']
         })
       },
       {
@@ -80,7 +82,7 @@ const clientConfig = {
     }),
     new CleanWebpackPlugin('dist'),
     new ConsoleLogOnBuildWebpackPlugin({ name: 'JET' }),
-    new ExtractTextWebpackPlugin('css/style.css'),
+    new ExtractTextWebpackPlugin('style/[id].css'),
   ],
   // devServer: {
   //   contentBase: './dist',

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import './login.scss';
+import './login_style.scss';
 import { loginInfo, initProps } from './login_IF';
 
 class Login_Page extends React.Component {
   state: loginInfo
-  constructor(props: initProps) {
+  constructor(props:initProps) {
     super(props);
     this.state = {
       username: '哈哈',

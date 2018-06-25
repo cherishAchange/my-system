@@ -12,6 +12,7 @@ const consoleLogSource = function(params){
   dependent(222);
   // console.log(`打印一下从webpack配置文件拿到的配置项：${JSON.stringify(options)}`);
   console.log(`==========我是自定义loader，我被执行了，打印一下this：${this}==========`);
+  console.log(String(params))
   //callback(String(params));
   //需要返回多个值时调用this.callback(err, values...)
   return String(params);
